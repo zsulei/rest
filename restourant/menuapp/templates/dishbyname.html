@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dish by Name</title>
+</head>
+<body>
+    {% for dish in dishes_by_name %}
+
+        <ul>
+            <h2>{{ dish.name }}</h2>
+            <li>
+            <h3>{{ dish.ingredient1 }}</h3>
+            </li>
+            <li>
+            <h3>{{ dish.ingredient2 }}</h3>
+            </li>
+            <li>
+            <h3>{{ dish.ingredient3 }}</h3>
+            </li>
+        </ul>
+    {% endfor %}
+</body>
+</html>
