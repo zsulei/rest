@@ -33,8 +33,8 @@ def dishes_by_name(request):
     for dish in Dishes.objects.all():
         if distance(search_result, dish.name) <= 2:
             queryset = dish.name
-        else:
-            queryset = Dishes.objects.filter(name__icontains=search_result)
+        # else:
+        #     queryset = Dishes.objects.filter(name__icontains=search_result)
     return render(request, 'dishbyname.html', {'dishes_by_name': queryset})
 
 
