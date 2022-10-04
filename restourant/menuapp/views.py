@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Dishes, Ingredients, KitchenTypes
 from django.db.models import Q
+from thefuzz import fuzz
+from Levenshtein import distance
 # Create your views here.
 
 
@@ -28,5 +30,11 @@ def dishesByWeight(request):
 
 def dishes_by_name(request):
     search_result = request.GET.get('NameSearch')
-    queryset = Dishes.objects.filter(name__icontains=search_result)
+    for dish in Dishes.objects.all():
+        if distance(search_result, dish.name) <= 2:
+            queryset = dish.name
+        else:
+            queryset = Dishes.objects.filter(name__icontains=search_result)
     return render(request, 'dishbyname.html', {'dishes_by_name': queryset})
+
+
